@@ -1,0 +1,10 @@
+file_format: "1"
+id: ndrl
+name: Ndrl
+type: shield
+url: https://github.com/foostan/crkbd/
+requires: [nice_nano_v2]
+features:
+  - keys
+  - display
+  - studio
