@@ -28,7 +28,7 @@
             , <&gpio1 06 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // row 4
             ;
     };
-
+};
     
 &pro_micro {
     status = "okay";
