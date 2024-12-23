@@ -31,7 +31,7 @@
         studio_unlock: studio_unlock {
             compatible = "zmk,behavior-key-press";
             label = "STUDIO_UNLOCK";
-            #binding-cells = <0>;
+            #binding-cells = <1>;
             bindings = <&kp LS(F6)>;
         };
     };
