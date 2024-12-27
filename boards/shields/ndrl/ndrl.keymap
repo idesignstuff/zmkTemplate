@@ -26,7 +26,35 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         }; // end home row mod tap settings
-      
+
+        pht: positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "POSITIONAL_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <400>;
+            quick-tap-ms = <200>;
+            bindings = <&kp>, <&kp>;
+
+            hold-trigger-key-positions = <1>;    // <---[[the W key]]
+            }; //end positional hold tap
+
+       rpi: require_prior_idle {
+         compatible = "zmk,behavior-hold-tap";
+         #binding-cells = <2>;
+         flavor = "tap-preferred";
+         tapping-term-ms = <200>;
+         quick-tap-ms = <200>;
+         require-prior-idle-ms = <125>;
+         bindings = <&kp>, <&kp>;
+         }; //end require prior idle
+
+      td_sp: tap_dance_mod_tap_spc {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&lt NAV SPACE>, <&kp SPACE>;
+        }; //end tap dance
     }; // end behaviors
 
     keymap {
@@ -35,9 +63,9 @@
         default_layer {
             bindings = <
 //╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮                                     ╭──────────────┬──────────────┬──────────────┬──────────────┬─────────────────────╮
-        &kp N1       &kp N2          &kp N3         &kp N4          &kp N5                                             &kp N6           &kp N7          &kp N8         &kp N9          &kp N0
+        &rpi LS(N1) N1 &rpi LS(N2) N2 &rpi LS(N3) N3 &rpi LS(N4) N4 &rpi LS(N5) N5                                       &rpi LS(N6) N6 &rpi LS(N7) N7 &rpi LS(N8) N8 &rpi LS(N9) N9     &rpi LS(N0) N0
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤
-        &kp Q        &kp W           &kp E          &kp R           &kp T                                              &kp Y           &kp U            &kp I         &kp O           &kp P
+        &kp Q        &kp W           &kp E          &kp R           &kp T                                              &kp Y           &kp U            &kp I         &kp O           &rpi PSCRN P
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤
      &hrm LGUI A   &hrm LALT S      &hrm LCTL D  &hrm LSHFT F       &kp G                                               &kp H        &hrm RSHFT J    &hrm RCTL K    &hrm RALT L     &hrm RGUI SEMI
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────╮ ╭─────────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤ 
@@ -55,9 +83,9 @@
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤
     &out OUT_TOG       &trans         &trans         &trans         &trans                                               &trans           &kp HOME       &kp UP        &kp END          &trans
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤ 
-    &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3    &bt BT_SEL 4                                            &trans         &kp LEFT       &kp DOWN        &kp RIGHT      &studio_unlock
+    &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3    &bt BT_SEL 4                                            &trans         &kp LEFT       &kp DOWN        &kp RIGHT      &trans
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────╮ ╭─────────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤ 
-    &bt BT_CLR        &trans         &trans         &trans        &sys_reset    &bootloader          &bootloader      &sys_reset         &trans          &trans          &trans          &trans
+    &bt BT_CLR        &trans         &trans         &studio_unlock        &sys_reset    &bootloader          &bootloader      &sys_reset        &studio_unlock          &trans          &trans          &trans
 //╰──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴─────────────────┤ ├─────────────────┴──────────────┴──────────────┴──────────────┴──────────────┴─────────────────────╯ 
                                                     &trans         &trans         &trans            &trans           &trans          &trans
 //                                             ╰──────────────┴──────────────┴─────────────────╯ ╰─────────────────┴──────────────┴──────────────╯
