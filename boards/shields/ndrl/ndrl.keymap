@@ -49,6 +49,8 @@
          bindings = <&kp>, <&kp>;
          }; //end require prior idle
     }; // end behaviors
+};
+
 / {
     combos {
         compatible = "zmk,combos";
