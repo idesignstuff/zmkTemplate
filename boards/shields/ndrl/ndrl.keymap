@@ -49,22 +49,144 @@
          bindings = <&kp>, <&kp>;
          }; //end require prior idle
     }; // end behaviors
+/ {
+    combos {
+        compatible = "zmk,combos";
 
+        combo_grave {
+            bindings = <&kp GRAVE>;
+            key-positions = <0 1>;
+            require-prior-idle-ms = <100>;
+            layers = <0>;
+        };
+
+        combo_capslock {
+            bindings = <&caps_word>;
+            key-positions = <23 26>;
+            require-prior-idle-ms = <100>;
+            layers = <0>;
+        };
+
+        combo_hyphen {
+            bindings = <&kp MINUS>;
+            key-positions = <8 9>;
+            require-prior-idle-ms = <100>;
+            layers = <0>;
+        };
+
+        combo_equals {
+            bindings = <&kp EQUAL>;
+            key-positions = <18 19>;
+            require-prior-idle-ms = <100>;
+            layers = <0>;
+        };
+
+        combo_backslash {
+            bindings = <&kp BSLH>;
+            key-positions = <38 39>;
+            require-prior-idle-ms = <100>;
+            layers = <0>;
+        };
+
+        combo_rcd {
+            bindings = <&rcd_macro>;
+            key-positions = <12 13>;
+            require-prior-idle-ms = <250>;
+        };
+
+        combo_rtc {
+            bindings = <&rtc_macro>;
+            key-positions = <13 14>;
+            require-prior-idle-ms = <250>;
+        };
+
+        open_par {
+            bindings = <&kp LEFT_PARENTHESIS>;
+            key-positions = <43 44>;
+            require-prior-idle-ms = <100>;
+        };
+
+        close_par {
+            bindings = <&kp RIGHT_PARENTHESIS>;
+            key-positions = <45 46>;
+            require-prior-idle-ms = <100>;
+        };
+
+        open_brkt {
+            bindings = <&kp LEFT_BRACKET>;
+            key-positions = <42 43>;
+            require-prior-idle-ms = <100>;
+        };
+
+        close_brkt {
+            bindings = <&kp RIGHT_BRACKET>;
+            key-positions = <46 47>;
+            require-prior-idle-ms = <100>;
+        };
+
+        wes_combo {
+            bindings = <&wes_macro>;
+            key-positions = <11 12>;
+            require-prior-idle-ms = <250>;
+        };
+        cdr_combo {
+            bindings = <&cdr_macro>;
+            key-positions = <32 33>;
+            require-prior-idle-ms = <250>;
+        };
+    };
+};
+
+/ {
+    macros {
+        rcd_macro: rcd_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp R &kp I &kp T &kp C &kp H &kp I &kp E &kp UNDER &kp C &kp H &kp R &kp I &kp S &kp T &kp I &kp A &kp N &kp UNDER &kp D &kp AT &kp C &kp A &kp T &kp DOT &kp C &kp O &kp M>;
+            label = "RCD_MACRO";
+            wait-ms = <10>;
+            tap-ms = <10>;
+        };
+        rtc_macro: rtc_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp R &kp I &kp T &kp C &kp H &kp C &kp D>;
+            label = "RTC_MACRO";
+            wait-ms = <10>;
+            tap-ms = <10>;
+        };
+        wes_macro: wes_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp W &kp E &kp DOT &kp E &kp A &kp T &kp DOT &kp S &kp P &kp A &kp M &kp A &kp L &kp O &kp T &kp AT &kp G &kp M &kp A &kp I &kp L &kp DOT &kp C &kp O &kp M>;
+            label = "WES_MACRO";
+            wait-ms = <10>;
+            tap-ms = <10>;
+        };
+        cdr_macro: cdr_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C &kp H &kp R &kp I &kp S &kp T &kp I &kp A &kp N &kp DOT &kp D &kp DOT &kp R &kp I &kp T &kp C &kp H &kp I &kp E &kp AT &kp G &kp M &kp A &kp I &kp L &kp DOT &kp C &kp O &kp M>;
+            label = "CDR_MACRO";
+            wait-ms = <10>;
+            tap-ms = <10>;
+        };
+    };
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-//╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮                                     ╭──────────────┬──────────────┬──────────────┬──────────────┬─────────────────────╮
-        &rpi LS(N1) N1 &rpi LS(N2) N2 &rpi LS(N3) N3 &rpi LS(N4) N4 &rpi LS(N5) N5                                       &rpi LS(N6) N6 &rpi LS(N7) N7 &rpi LS(N8) N8 &rpi LS(N9) N9     &rpi LS(N0) N0
-//├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤
-        &kp Q        &kp W           &kp E          &kp R           &kp T                                              &kp Y           &kp U            &kp I         &kp O           &rpi PSCRN P
-//├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤
-     &hrm LGUI A   &hrm LALT S      &hrm LCTL D  &hrm LSHFT F       &kp G                                               &kp H        &hrm RSHFT J    &hrm RCTL K    &hrm RALT L     &hrm RGUI SEMI
-//├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────╮ ╭─────────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤ 
-      &kp Z          &kp X           &kp C          &kp V           &kp B      &kp LC(LA(DEL))        &kp C_MUTE         &kp N           &kp M         &kp COMMA      &kp DOT         &kp FSLH
-//╰──────────────┴──────────────┴──────────────┼──────────────┼──────────────┼─────────────────┤ ├─────────────────┼──────────────┼──────────────┼──────────────┴──────────────┴─────────────────────╯ 
-                                                 &lt LOWER ESC     &kp SPC      &lt RAISE TAB       &lt ADJUST RET      &kp BSPC          &kp DEL
+//╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮                                     ╭──────────────┬──────────────┬──────────────┬──────────────┬────────────────╮
+   &rpi LS(N1) N1 &rpi LS(N2) N2 &rpi LS(N3) N3 &rpi LS(N4) N4 &rpi LS(N5) N5                                       &rpi LS(N6) N6 &rpi LS(N7) N7 &rpi LS(N8) N8 &rpi LS(N9) N9  &rpi LS(N0) N0
+//├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼────────────────┤
+        &kp Q        &kp W           &kp E          &kp R           &kp T                                              &kp Y           &kp U            &kp I         &kp O        &rpi PSCRN P
+//├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼────────────────┤
+     &hrm LGUI A   &hrm LALT S      &hrm LCTL D  &hrm LSHFT F       &kp G                                               &kp H        &hrm RSHFT J    &hrm RCTL K    &hrm RALT L   &hrm RGUI apos
+//├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────╮ ╭─────────────────┼──────────────┼──────────────┼──────────────┼──────────────┼────────────────┤ 
+    &rpi LC(Z) Z   &rpi LC(X) X   &rpi LC(C) C   &rpi LC(V) V       &kp B      &kp LC(LA(DEL))        &kp C_MUTE         &kp N           &kp M   &rpi SEMI COMMA &rpi COLON DOT     &kp FSLH
+//╰──────────────┴──────────────┴──────────────┼──────────────┼──────────────┼─────────────────┤ ├─────────────────┼──────────────┼──────────────┼──────────────┴──────────────┴────────────────╯ 
+                                                 &lt LOWER ESC     &kp SPC      &lt RAISE TAB       &lt ADJUST RET      &kp BSPC        &kp DEL
 //                                             ╰──────────────┴──────────────┴─────────────────╯ ╰─────────────────┴──────────────┴──────────────╯
             >;
         }; // end default layer
