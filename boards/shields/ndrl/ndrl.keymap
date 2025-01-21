@@ -20,7 +20,7 @@
             y-codes = <INPUT_REL_RY>;
         };
     };
-}
+};
 
 #define DEFAULT 0
 #define LOWER   1
