@@ -10,6 +10,8 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <dt-bindings/zmk/input_transform.h>
+#include <dt-bindings/zmk/ext_power.h>
+
 / {
     input_processors {
         my_rotation_event_transform: my_rotation_event_transform {
@@ -148,6 +150,12 @@
             key-positions = <32 33>;
             require-prior-idle-ms = <250>;
         };
+        ext_combo {
+            bindings = <&ext_power EP_TOG>;
+            key-positions = <2 9>;
+            require-prior-idle-ms = <250>;
+        };
+
     };
 };
 
