@@ -14,14 +14,14 @@
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/pointing.h>
 
-
-/ {
+/* / {
     glidepoint_listener {
         compatible = "zmk,input-listener";
         device = <&glidepoint>;
         input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP |INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>; // | INPUT_TRANSFORM_X_INVERT |
     };
 };
+*/
 
 // Mouse Scroll Value
 
@@ -30,10 +30,12 @@
 // cirque trackpad input&layer control
 
 &glidepoint_listener {
-    input-processors =
+     compatible = "zmk,input-listener";
+     device = <&glidepoint>;
+     input-processors =
         <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
         <&zip_xy_scaler 3 2>,
-       n// <&zip_temp_layer MOUSE 700>;
+       ;// <&zip_temp_layer MOUSE 700>
 
     lowspeedmode {
         layers = <RAISE>;
