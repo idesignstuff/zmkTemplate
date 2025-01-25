@@ -20,23 +20,18 @@
         device = <&glidepoint>;
         input-processors = <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP |INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>; // | INPUT_TRANSFORM_X_INVERT |
     };
-};
 
-
-// Mouse Scroll Value
-
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 100
-
-// cirque trackpad input&layer control
-
-
-    scroller {//scroller
+    scroller {
         layers = <LOWER>;
         input-processors =
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT)>,
             <&zip_scroll_scaler 1 6>;
     }; //end scroller
+};
+
+// Mouse Scroll Value
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 100
 
 
 #define DEFAULT 0
