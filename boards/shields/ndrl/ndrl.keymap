@@ -23,6 +23,34 @@
     };
 };
 
+// Mouse Scroll Value
+
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 100
+
+// cirque trackpad input&layer control
+
+&glidepoint_listener {
+    input-processors =
+        <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
+        <&zip_xy_scaler 3 2>,
+       n// <&zip_temp_layer MOUSE 700>;
+
+    lowspeedmode {
+        layers = <RAISE>;
+        input-processors =
+            <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
+            <&zip_xy_scaler 3 4>,
+            // <&zip_temp_layer MOUSE 700>;
+    };
+
+    scroller {
+        layers = <LOWER>;
+        input-processors =
+            <&zip_xy_to_scroll_mapper>,
+            <&zip_scroll_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT)>,
+            <&zip_scroll_scaler 1 6>;
+    };
+};
 
 #define DEFAULT 0
 #define LOWER   1
@@ -155,6 +183,11 @@
             key-positions = <2 9>;
             require-prior-idle-ms = <250>;
         };
+        mmb_combo {
+            bindings = <&mkp MB3>;
+            key-positions = <35 36>;
+            require-prior-idle-ms = <250>;
+        };
 
     };
 };
@@ -202,7 +235,7 @@
 //╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮                                     ╭──────────────┬──────────────┬──────────────┬──────────────┬────────────────╮
    &rpi LS(N1) N1 &rpi LS(N2) N2 &rpi LS(N3) N3 &rpi LS(N4) N4 &rpi LS(N5) N5                                       &rpi LS(N6) N6 &rpi LS(N7) N7 &rpi LS(N8) N8 &rpi LS(N9) N9  &rpi LS(N0) N0
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼────────────────┤
-&ext_power EP_TOG      &kp W         &kp E          &kp R           &kp T                                              &kp Y           &kp U            &kp I         &kp O        &rpi PSCRN P
+        &kp Q          &kp W         &kp E          &kp R           &kp T                                              &kp Y           &kp U            &kp I         &kp O        &rpi PSCRN P
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼────────────────┤
      &hrm LGUI A   &hrm LALT S      &hrm LCTL D  &hrm LSHFT F       &kp G                                               &kp H        &hrm RSHFT J    &hrm RCTL K    &hrm RALT L  &hrm RGUI APOS
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────╮ ╭─────────────────┼──────────────┼──────────────┼──────────────┼──────────────┼────────────────┤ 
@@ -216,13 +249,13 @@
         lower_layer {
             bindings = <
 //╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮                                     ╭──────────────┬──────────────┬──────────────┬──────────────┬─────────────────────╮
-        &kp F1        &kp F2         &kp F3         &kp F4         &kp F5                                               &kp F6           &kp F7          &kp F8          &kp F9          &kp F10
+        &kp F1        &kp F2         &kp F3         &kp F4         &kp F5                                               &kp F6         &kp F7          &kp F8        &kp F9           &kp F10
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤
-    &out OUT_TOG       &trans         &trans         &trans         &trans                                               &trans           &kp HOME       &kp UP        &kp END          &trans
+    &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3    &bt BT_SEL 4                                            &trans        &kp HOME        &kp UP        &kp END           &trans
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤ 
-    &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3    &bt BT_SEL 4                                            &trans         &kp LEFT       &kp DOWN        &kp RIGHT      &trans
+       &trans         &trans         &trans         &trans         &trans                                               &trans         &kp LEFT       &kp DOWN       &kp RIGHT        &trans
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────╮ ╭─────────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤ 
-    &bt BT_CLR        &trans         &trans         &studio_unlock        &sys_reset    &bootloader          &bootloader      &sys_reset        &studio_unlock          &trans          &trans          &trans
+    &bt BT_CLR     &out OUT_TOG      &trans     &studio_unlock    &sys_reset    &bootloader       &ext_power EP_TOG     &trans        &trans          &trans         &trans           &trans
 //╰──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴─────────────────┤ ├─────────────────┴──────────────┴──────────────┴──────────────┴──────────────┴─────────────────────╯ 
                                                     &trans         &trans         &trans            &trans           &trans          &trans
 //                                             ╰──────────────┴──────────────┴─────────────────╯ ╰─────────────────┴──────────────┴──────────────╯
@@ -248,14 +281,14 @@
 
         adjust_layer {
             bindings = <
-//╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮                                     ╭──────────────┬──────────────┬──────────────┬──────────────┬─────────────────────╮
+//╭──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮               ─────                 ╭──────────────┬──────────────┬──────────────┬──────────────┬─────────────────────╮
         &kp F11       &kp F12        &kp F13        &kp F14        &kp F15                                              &trans         &trans          &trans       &kp MINUS      &kp PLUS
-//├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤
+//├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤         |     Cirque     |          ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤
         &trans        &trans      &msc SCRL_UP      &trans         &trans                                               &mkp MB4        &mkp MB1   &mmv MOVE_UP      &mkp MB2       &mkp MB3
-//├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤                                     ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤ 
+//├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤               ─────                 ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤ 
         &trans    &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_RIGHT     &trans                                               &kp N4     &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &mkp MB5
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────╮ ╭─────────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤ 
-        &trans        &trans         &trans         &trans         &trans          &trans                &trans         &kp N1         &kp N2          &kp N3        &trans         &trans
+        &trans        &trans         &trans         &trans         &trans          &mkp MB1            &mkp MB2         &kp N1         &kp N2          &kp N3        &trans         &trans
 //╰──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴─────────────────┤ ├─────────────────┴──────────────┴──────────────┴──────────────┴──────────────┴─────────────────────╯ 
                                                      &trans           &trans       &trans               &kp ENTER       &kp N0         &kp DOT       
 //                                             ╰──────────────┴──────────────┴─────────────────╯ ╰─────────────────┴──────────────┴──────────────╯
