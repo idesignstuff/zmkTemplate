@@ -29,22 +29,6 @@
 
 // cirque trackpad input&layer control
 
-  &glidepoint_listener {//listener
-     compatible = "zmk,input-listener";
-     device = <&glidepoint>;
-     input-processors =
-        <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
-        <&zip_xy_scaler 3 2>,
-       ; // <&zip_temp_layer MOUSE 700>
-
-    lowspeedmode { //lowspeed
-        layers = <RAISE>;
-        input-processors =
-            <&zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
-            <&zip_xy_scaler 3 4>,
-           ; // <&zip_temp_layer MOUSE 700>;
-    };//end lowspeed
- }; //end listener
 
     scroller {//scroller
         layers = <LOWER>;
