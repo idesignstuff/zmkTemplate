@@ -4,4 +4,11 @@ if SHIELD_NDRL
 config ZMK_KEYBOARD_NAME
     default "Anduril"
 
+# Cirque Glidepoint trackpad
+config ZMK_POINTING
+    default y
+
+# Assuming pointing device uses SPI
+config SPI
+    default y
 endif
