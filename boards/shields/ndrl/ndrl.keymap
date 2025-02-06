@@ -19,6 +19,7 @@
 #define RAISE   2
 #define ADJUST  3
 #define CIRQUE  4
+#define SCROLL  5
  / {
      glidepoint_listener {
         compatible = "zmk,input-listener";
