@@ -289,15 +289,15 @@
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤         |     Cirque     |          ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤
         &trans        &trans      &msc SCRL_UP      &trans         &trans                                               &mkp MB4        &mkp MB1   &mmv MOVE_UP      &mkp MB2       &mkp MB3
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤               ─────                 ├──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤ 
-        &trans    &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_RIGHT     &trans                                               &kp N4     &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &mkp MB5
+        &trans    &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_RIGHT   &mo SCROLL                                            &kp N4     &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT    &mkp MB5
 //├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────╮ ╭─────────────────┼──────────────┼──────────────┼──────────────┼──────────────┼─────────────────────┤ 
-        &trans        &trans         &trans         &trans         &trans          &mkp MB1            &mkp MB2         &kp N1         &kp N2          &kp N3        &trans         &trans
+        &trans        &trans         &trans         &trans         &trans          &mkp MB1            &mkp MB2         &mkp MB3        &kp N2          &kp N3        &trans         &trans
 //╰──────────────┴──────────────┴──────────────┴──────────────┴──────────────┴─────────────────┤ ├─────────────────┴──────────────┴──────────────┴──────────────┴──────────────┴─────────────────────╯ 
-                                                     &trans           &trans       &trans               &kp ENTER       &kp N0         &kp DOT       
+                                                     &trans         &trans          &trans             &kp ENTER       &mkp MB4       &mkp MB5       
 //                                             ╰──────────────┴──────────────┴─────────────────╯ ╰─────────────────┴──────────────┴──────────────╯
             >;
 
-        }; // end adjust layer
+        }; // end cirque layer
 
         scroll_layer {
             bindings = <
@@ -314,7 +314,7 @@
 //                                             ╰──────────────┴──────────────┴─────────────────╯ ╰─────────────────┴──────────────┴──────────────╯
             >;
 
-        }; // end adjust layer
+        }; // end scroll layer
 
 
         extra1 {
