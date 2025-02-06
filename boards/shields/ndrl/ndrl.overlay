@@ -1,10 +1,11 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include "ndrl-layouts.dtsi"
-
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1500  // default: 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // default: 10
-#include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
+#include <dt-bindings/zmk/pointing.h>
+
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1600  // default: 600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // default: 10
 
 &pinctrl {
     /* configuration for spi0 device, default state */
