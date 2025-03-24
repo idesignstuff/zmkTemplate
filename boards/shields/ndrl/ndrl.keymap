@@ -38,7 +38,7 @@
    };
 
 // Mouse Scroll Value
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 100
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 200
 
 
 
@@ -174,7 +174,11 @@
             key-positions = <35 36>;
             require-prior-idle-ms = <250>;
         };
-
+        scrll {
+            bindings = <&mo SCROLL>;
+            key-positions = <42 44>;
+            require-prior-idle-ms = <100>;
+        };
     };
 };
 
