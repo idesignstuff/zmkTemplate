@@ -32,7 +32,7 @@
         layers = <SCROLL>;
         input-processors =
             <&zip_xy_to_scroll_mapper>,
-            <&zip_scroll_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT)>,
+            <&zip_scroll_transform (INPUT_TRANSFORM_XY_SWAP |INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
             <&zip_scroll_scaler 1 6>;
     };
    };
@@ -78,7 +78,15 @@
          }; //end require prior idle
     }; // end behaviors
 };
-
+/ {
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <5>;
+        };
+    };
+};
 / {
     combos {
         compatible = "zmk,combos";
@@ -174,11 +182,7 @@
             key-positions = <35 36>;
             require-prior-idle-ms = <250>;
         };
-        scrll {
-            bindings = <&mo SCROLL>;
-            key-positions = <42 44>;
-            require-prior-idle-ms = <100>;
-        };
+        
     };
 };
 
